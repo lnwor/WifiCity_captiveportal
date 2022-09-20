@@ -15,7 +15,9 @@ I took the Mac scripts from [Mehechiger](https://github.com/Mehechiger/WifiCity_
 
 ### Windows
 
-* Download `WifiCity_win.bat` and execute it.
+* Download
+  [WifiCity_win.bat](https://raw.githubusercontent.com/lnwor/WifiCity_captiveportal/main/Windows/WifiCity_win.bat)
+  and execute it.
 * Insert Username and Password.
 * From now on, you can execute the generated `login_WifiCity.bat` file to
 connect to the captive portal without inserting or opening anything.
