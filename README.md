@@ -22,6 +22,24 @@ I took the Mac scripts from [Mehechiger](https://github.com/Mehechiger/WifiCity_
 * From now on, you can execute the generated `login_WifiCity.bat` file to
 connect to the captive portal without inserting or opening anything.
 
+### Mac
+
+* Open the Mac folder and download `login_wifi.sh` and `me.wificity.login.plist`
+* Edit `login_wifi.sh` with your own credential, then put it somewhere, for
+example in /usr/local/bin/. Be aware that if file is readable for the users of
+your device, they can read your username and password of WifiCity, which is not
+a major concern, but you're warned.
+* Edit `me.wificity.login.plist` and replace `SOMEWHERE` with the location where
+  you put `login_wifi.sh`.
+* Put `me.wificity.login.plist` under ~/Library/LaunchAgents/
+* Open terminal and execute 
+```bash=
+launchctl load -w ~/Library/LaunchAgents/me.wificity.login.plist
+```
+
+Then reboot and it will automatically execute your script when your network
+connection changes.
+
 ### Linux
 
 * Open the Linux folder and download `login_wifi.sh`
@@ -55,25 +73,6 @@ chmod 755 /etc/NetworkManager/dispatcher.d/10-login_wifi.sh
 ```
 
 Then reboot and it will automatically execute your script while connected to a network.
-
-
-### Mac
-
-* Open the Mac folder and download `login_wifi.sh` and `me.wificity.login.plist`
-* Edit `login_wifi.sh` with your own credential, then put it somewhere, for
-example in /usr/local/bin/. Be aware that if file is readable for the users of
-your device, they can read your username and password of WifiCity, which is not
-a major concern, but you're warned.
-* Edit `me.wificity.login.plist` and replace `SOMEWHERE` with the location where
-  you put `login_wifi.sh`.
-* Put `me.wificity.login.plist` under ~/Library/LaunchAgents/
-* Open terminal and execute 
-```bash=
-launchctl load -w ~/Library/LaunchAgents/me.wificity.login.plist
-```
-
-Then reboot and it will automatically execute your script when your network
-connection changes.
 
 ### Android
 
