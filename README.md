@@ -1,41 +1,21 @@
 # WifiCity_captiveportal
 
-Tired to enter your credential everytime you connect to WifiCity, these scripts are made for you.
+Tired to enter your credential every time you connect to WifiCity, these scripts are made for you.
 
-The main goal of this repository is to offer a solution to connect automaticaly on internet while the computer is connected at the CIUP wifi called WifiCity.
+The main goal of this repository is to offer a solution to connect automatically on internet while the computer is connected at the CIUP wifi called WifiCity.
 
+I made the Windows instruction more user-friendly, if you use linux you are
+supposed to know how to edit a text file or change file mode bits.
 
-****************************************************************************
-I have used [this linux script](https://gist.github.com/rnbguy/6f574caa6b3535162a20750cb1777a09) as a base of my work. Thanks [Ranadeep Biswas](https://gist.github.com/rnbguy) !
-I haven't change the script for linux (it works perfectly). I just add some documentation.
-Then I rewrote the script to work on windows.
-****************************************************************************
-
-
-## Prerequisite
-
-Nothing, no particular software is required.
 
 ## How to use
 
 ### Windows
 
-* Open the Windows folder and download `WifiCity_win_v1.1.zip`
-* Extract the zip file
-
-**First use:**
-1. Open the file WifiCity_win.bat (double click)
-2. Autorize the admin prompt window (click on yes)
-3. Type 1 then press enter
-4. Enter your WifiCity credential, login (enter), password (enter)
-5. Close the terminal with the close icon or enter 3
-
-**Remove the set up:**
-1. Open the file WifiCity_win.bat (double click)
-2. Autorize the admin prompt window (click on yes)
-3. Type 2 then press enter
-5. Close the terminal with the close icon or enter 3
-
+* Download `WifiCity\_win.bat` and execute it.
+* Insert Username and Password.
+* From now on, you can execute the generated `login\_WifiCity.bat` file to
+connect to the captive portal without inserting or opening anything.
 
 ### Linux
 

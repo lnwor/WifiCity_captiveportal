@@ -1,97 +1,16 @@
-:: Made by Thomas with <3
-
 @echo off
 
-:: BatchGotAdmin
-:-------------------------------------
-REM  --> Check for permissions
-    IF "%PROCESSOR_ARCHITECTURE%" EQU "amd64" (
->nul 2>&1 "%SYSTEMROOT%\SysWOW64\cacls.exe" "%SYSTEMROOT%\SysWOW64\config\system"
-) ELSE (
->nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
-)
 
-REM --> If error flag set, we do not have admin.
-if '%errorlevel%' NEQ '0' (
-    echo Requesting administrative privileges...
-    goto UACPrompt
-) else ( goto gotAdmin )
-
-:UACPrompt
-    echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
-    set params= %*
-    echo UAC.ShellExecute "cmd.exe", "/c ""%~s0"" %params:"=""%", "", "runas", 1 >> "%temp%\getadmin.vbs"
-
-    "%temp%\getadmin.vbs"
-    del "%temp%\getadmin.vbs"
-    exit /B
-
-:gotAdmin
-    :: To stay in the execution folder
-    @cd /d "%~dp0"
-
-
-:: Creating the menu
-CALL :menu
-EXIT /B 0
-
-:menu
-echo Menu:
-echo 1/ Install
-echo 2/ Remove
-echo 3/ Exit
+echo Please enter your credential
+set /P wificity_login="Login: "
+set /P wificity_password="Password: "
+CALL :data >.\login_WifiCity.bat
 echo.
-set action=0
-set /P action="Select one action from the previous menu ? (Write 1, 2 or 3 and press enter) "
-
-if %action% EQU 1 (
-    echo Please enter your credential
-    set /P wificity_login="Login = "
-    set /P wificity_password="Password = "
-    CALL :data >C:\Windows\System32\login_WifiCity.bat
-    CALL :data2 >C:\Windows\System32\login_WifiCity.vbs
-    echo.
-    if exist C:\Windows\System32\login_WifiCity.vbs (
-        if exist C:\Windows\System32\login_WifiCity.bat (
-            echo Automatic login script successfully written
-        ) else (
-            echo An error occured, the script ^(login_WifiCity.bat^) was not created.
-        )
-    ) else (
-        echo An error occured, the script ^(login_WifiCity.vbs^) was not created.
-        echo Please check that you execute this file in Administrator mode.
-    )
-    :: SCHTASKS /Create /TN WifiCityAutomaticConnection /SC ONEVENT /EC Microsoft-Windows-NetworkProfile/Operational /MO "*[System[(EventID=10000)]] and *[EventData[(Data[@Name='Name']='WifiCity')]]" /TR "C:\Windows\System32\login_WifiCity.bat"
-    SCHTASKS /CREATE /TN WifiCityAutomaticConnection /XML WifiCityAutomaticConnection.xml
-    echo.
-    GOTO :menu
+if exist .\login_WifiCity.bat (
+    echo Automatic login script successfully generated
+) else (
+    echo An error occured, the script ^(login_WifiCity.bat^) was not created.
 )
-
-if %action% EQU 2 (
-    SCHTASKS /DELETE /TN WifiCityAutomaticConnection /F
-    del C:\Windows\System32\login_WifiCity.bat
-    del C:\Windows\System32\login_WifiCity.vbs
-    if exist C:\Windows\System32\login_WifiCity.bat (
-        echo An error occured, the script ^(login_WifiCity.bat^) was not deleted.
-        echo Please check that you execute this file in Administrator mode.
-        if exist C:\Windows\System32\login_WifiCity.vbs (
-            echo An error occured, the script ^(login_WifiCity.vbs^) was not deleted.
-        )
-    ) else (
-        echo Automatic login script successfully removed
-    )
-    echo.
-    GOTO :menu
-)
-
-if %action% EQU 3 (
-    EXIT /B 0
-)
-
-echo.
-echo Please enter a correct value.
-echo.
-GOTO :menu
 EXIT /B 0
 
 :data
@@ -118,27 +37,23 @@ echo:     set /A count=1
 echo: 
 echo:     FOR /F "tokens=*" %%%%g IN ('curl -si %%gen204%%') do (
 echo:         if !count! == 1 set gen204_status=%%%%g
-echo:         if !count! == 2 set gen204_location=%%%%g
-echo:
+echo:         if !count! == 7 (
+echo:             FOR /F "tokens=2 delims=?" %%%%I IN ("%%%%g") do (
+echo:			      FOR /F  delims^^=^^"^ tokens^=1 %%%%J IN ("%%%%I") do (
+echo:				      set magic=%%%%J
+echo:				  ) 
+echo:			  )
+echo:		  )
 echo:         set /A count=!count!+1
 echo:     )
 echo:
 echo:     set status=%%gen204_status:~9,3%%
 echo: 
 echo:     if %%status%% NEQ 204 (
-echo:       set magic=%%gen204_location:~43,16%%
-echo:
 echo:         curl -so NUL "!authserver!/fgtauth?!magic!"
 echo:         curl -so NUL "!authserver!" --data "magic=!magic!&username=!username!&password=!password!"
 echo:
 echo:     )
 echo:
 echo: EXIT /B 0
-EXIT /B 0
-
-:data2
-echo: Dim WinScriptHost
-echo: Set WinScriptHost = CreateObject("WScript.Shell")
-echo: WinScriptHost.Run Chr(34) ^& "C:\Windows\System32\login_WifiCity.bat" ^& Chr(34), 0
-echo: Set WinScriptHost = Nothing
 EXIT /B 0
