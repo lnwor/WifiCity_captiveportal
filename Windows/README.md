@@ -2,8 +2,8 @@
 
 ## How to Use 
 
-Download the WifiCity\_win.bat script and execute it.\
-It should ask you your username and password to generate a login\_WifiCity.bat
+Download the `WifiCity_win.bat` script and execute it.\
+It should ask you your username and password to generate a `login_WifiCity.bat`
 file which, if executed, will connect to the WifiCity network.
 
 An example of the generated file is provided.
