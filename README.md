@@ -85,8 +85,3 @@ Execute the linux script with
 and use this
 [widget](https://play.google.com/store/apps/details?id=com.termux.widget&fbclid=IwAR0rr7g7ghvPZ8juKe1ses1xXTzq50hbIcUDUcbozzb87_pKllknFPW8TBQ)
 to execute it from home screen. (I couldn't make this work, but you can try)
-
-### iOS
-
-One idea is to use the app ***Shortcuts*** but with iOS 12 it doesn't seem to be
-possible but it might be with most recent version of iOS.
