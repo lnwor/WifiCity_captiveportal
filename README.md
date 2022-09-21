@@ -26,6 +26,9 @@ more reliable solution I found is to manually start a script.
 connect to the captive portal without inserting or opening anything. You may put
 it in the desktop to open it quickly or create some kind of shortcut.
 
+**Note that Windows may warn you that this script could be dangerous.**\
+Of course it's not, you can read the code, there's nothing malicious.
+
 ### Mac
 
 * Open the Mac folder and download `login_wifi.sh` and `me.wificity.login.plist`
