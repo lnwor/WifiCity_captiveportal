@@ -5,6 +5,10 @@
 # README : make sure these binaries are available on your distribution.
 # curl sed
 
+# Insert here your username and password
+USERNAME=""
+PASSWORD=""
+
 login_wificity() {
     # wificity authentication server
     authserver="http://10.254.0.254:1000"
@@ -15,10 +19,6 @@ login_wificity() {
     # ref. https://github.com/NickSto/uptest/blob/master/captive-portals.md
     gen204="http://www.google.com/gen_204"
     
-    # wificity username password
-    username=$1
-    password=$2
-    
     # grabbing http response to detect captive portal
     gen204_resp=$(curl -si "$gen204")
     
@@ -27,7 +27,7 @@ login_wificity() {
     #echo
     
     # parsing http status code
-    status_code=$(sed -n '1s/^[^ ]* \([0-9]*\) \(.*\)$/\1/p' <<< "$gen204_resp")
+    status_code=$(sed -n '1s/^[^\s]\+ \([0-9]\+\)\(\s.*\)\?$/\1/p' <<< "$gen204_resp")
     
     #echo "status code (204 if already logged in):"
     #echo $status_code
@@ -43,7 +43,7 @@ login_wificity() {
         # generate the authentication form
         curl -so /dev/null "${authserver}/fgtauth?${magic}"
         # submit credentials with magic code to wificity server for authentication
-        curl -so /dev/null "$authserver" --data "magic=${magic}&username=${username}&password=${password}"
+        curl -so /dev/null "$authserver" --data "magic=${magic}&username=${USERNAME}&password=${PASSWORD}"
     fi
 }
 
@@ -56,10 +56,6 @@ check_loggedin() {
     # but change the "$status" != "204" with correct status code
     # ref. https://github.com/NickSto/uptest/blob/master/captive-portals.md
     gen204="http://www.google.com/gen_204"
-    
-    # wificity username password
-    username=$1
-    password=$2
     
     # grabbing http response to detect captive portal
     gen204_resp=$(curl -si "$gen204")
@@ -112,9 +108,7 @@ if [ "$(check_loggedin)" == "0" ]; then
     exit 0
 fi
 
-# change to your correct USERNAME PASSWORD
-login_wificity USERNAME PASSWORD
-# eg. login_wificity CFB_001 qweRT6YU
+login_wificity
 
 # check if we've alreadly logged in to WifiCity, otherwise, display debug notifications
 if [ "$(check_loggedin)" != "0" ]; then
@@ -127,4 +121,3 @@ if [ "$(check_loggedin)" != "0" ]; then
 else
     osascript -e 'display notification "Logged in!" with title "WifiCity"'
 fi
-

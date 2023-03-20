@@ -19,10 +19,6 @@ login_wificity() {
     # ref. https://github.com/NickSto/uptest/blob/master/captive-portals.md
     gen204="http://www.google.com/gen_204"
 
-    # wificity username password
-    username=$1
-    password=$2
-
     # grabbing http response to detect captive portal
     gen204_resp=$(curl -si "$gen204")
 
@@ -38,8 +34,8 @@ login_wificity() {
         # generate the authentication form
         curl -so /dev/null "${authserver}/fgtauth?${magic}"
         # submit credentials with magic code to wificity server for authentication
-        curl -so /dev/null "$authserver" --data "magic=${magic}&username=${username}&password=${password}"
+        curl -so /dev/null "$authserver" --data "magic=${magic}&username=${USERNAME}&password=${PASSWORD}"
     fi
 }
 
-login_wificity $USERNAME $PASSWORD
+login_wificity
