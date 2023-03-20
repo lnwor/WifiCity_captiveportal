@@ -7,6 +7,7 @@ read -r PASSWORD
 
 sed -i "s/USERNAME=\"\"/USERNAME=\"$USERNAME\"/" ./login_wificity.sh
 sed -i "s/PASSWORD=\"\"/PASSWORD=\"$PASSWORD\"/" ./login_wificity.sh
+sed -i "s/SOMEWHERE/\/usr\/local\/bin/" ./me.wificity.login.plist
 
 sudo cp ./login_wificity.sh /usr/local/bin/
 cp ./me.wificity.login.plist ~/Library/LaunchAgents/
