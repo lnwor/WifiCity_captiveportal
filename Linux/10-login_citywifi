@@ -14,10 +14,6 @@ login_wificity() {
     # ref. https://github.com/NickSto/uptest/blob/master/captive-portals.md
     gen204="http://detectportal.firefox.com/canonical.html"
 
-    # wificity username password
-    username=$1
-    password=$2
-
     # grabbing http response to detect captive portal
     gen204_resp=$(curl -si "$gen204")
 
@@ -33,17 +29,17 @@ login_wificity() {
         # generate the authentication form
         curl -so /dev/null "${authserver}/fgtauth?${magic}"
         # submit credentials with magic code to wificity server for authentication
-        curl -so /dev/null "$authserver" --data "magic=${magic}&username=${username}&password=${password}"
+        curl -so /dev/null "$authserver" --data "magic=${magic}&username=${USERNAME}&password=${PASSWORD}"
     fi
 }
 
 # NetworkManager passes interface and status as arguments to the dispatch scripts
-interface=$1
+# interface=$1
 status=$2
 
 # test if the connection ID is right, and do this only when the interface has been activated
 if test "$CONNECTION_ID" = "WifiCity" && test "$status" = "up"; then
-	login_wificity $USERNAME $PASSWORD
+	login_wificity
 	# Optionally insert here the commands to activate a vpn to hide your traffic from CityWifi
     # Eg. wg-quick up wireguard-interface
 fi
