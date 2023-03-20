@@ -16,7 +16,7 @@ I took the Mac scripts from [Mehechiger](https://github.com/Mehechiger/WifiCity_
 ### Windows
 
 Unfortunately it's not trivial to automate the connection in Windows, so the
-more reliable solution I found is to manually start a script.
+most reliable solution I found is to manually start a script.
 
 * Download
   [WifiCity_win.bat](https://raw.githubusercontent.com/lnwor/WifiCity_captiveportal/main/Windows/WifiCity_win.bat)
