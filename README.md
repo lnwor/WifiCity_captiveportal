@@ -31,6 +31,12 @@ Of course it's not, you can read the code, there's nothing malicious.
 
 ### Mac
 
+#### Automatic
+
+* You can just run `install.sh` and you will be asked for username and password and the script will modify and move the files for you.
+
+#### Manual
+
 * Open the Mac folder and download `login_wifi.sh` and `me.wificity.login.plist`
 * Edit `login_wifi.sh` with your own credential, then put it somewhere, for
 example in /usr/local/bin/. Be aware that if file is readable for the users of
