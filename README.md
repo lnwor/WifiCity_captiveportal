@@ -16,7 +16,7 @@ I took the Mac scripts from [Mehechiger](https://github.com/Mehechiger/WifiCity_
 ### Windows
 
 Unfortunately it's not trivial to automate the connection in Windows, so the
-more reliable solution I found manually starting a script.
+more reliable solution I found is to manually start a script.
 
 * Download
   [WifiCity_win.bat](https://raw.githubusercontent.com/lnwor/WifiCity_captiveportal/main/Windows/WifiCity_win.bat)
@@ -25,6 +25,9 @@ more reliable solution I found manually starting a script.
 * From now on, you can execute the generated `login_WifiCity.bat` file to
 connect to the captive portal without inserting or opening anything. You may put
 it in the desktop to open it quickly or create some kind of shortcut.
+
+**Note that Windows may warn you that this script could be dangerous.**\
+Of course it's not, you can read the code, there's nothing malicious.
 
 ### Mac
 
@@ -85,8 +88,3 @@ Execute the linux script with
 and use this
 [widget](https://play.google.com/store/apps/details?id=com.termux.widget&fbclid=IwAR0rr7g7ghvPZ8juKe1ses1xXTzq50hbIcUDUcbozzb87_pKllknFPW8TBQ)
 to execute it from home screen. (I couldn't make this work, but you can try)
-
-### iOS
-
-One idea is to use the app ***Shortcuts*** but with iOS 12 it doesn't seem to be
-possible but it might be with most recent version of iOS.
