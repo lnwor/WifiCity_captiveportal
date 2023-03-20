@@ -22,16 +22,8 @@ login_wificity() {
     # grabbing http response to detect captive portal
     gen204_resp=$(curl -si "$gen204")
     
-    #echo "gen204 response:"
-    #echo $gen204_resp
-    #echo
-    
     # parsing http status code
     status_code=$(sed -n '1s/^[^\s]\+ \([0-9]\+\)\(\s.*\)\?$/\1/p' <<< "$gen204_resp")
-    
-    #echo "status code (204 if already logged in):"
-    #echo $status_code
-    #echo
  
     # if http status code is not expected
     if [ "$status_code" != "204" ]; then
@@ -60,16 +52,8 @@ check_loggedin() {
     # grabbing http response to detect captive portal
     gen204_resp=$(curl -si "$gen204")
     
-    #echo "gen204 response:"
-    #echo $gen204_resp
-    #echo
-    
     # parsing http status code
     status_code=$(sed -n '1s/^[^ ]* \([0-9]*\) \(.*\)$/\1/p' <<< "$gen204_resp")
-    
-    #echo "status code (204 if already logged in):"
-    #echo $status_code
-    #echo
     
     # if http status code is not expected
     if [ "$status_code" != "204" ]; then
@@ -80,9 +64,6 @@ check_loggedin() {
         magic=$(sed -n 's/.*window\.location=.*?\([a-zA-Z0-9]*\).*$/\1/p' <<< "$gen204_resp")
         echo 1
         
-        #echo "magic:"
-        #echo $magic
-        #echo
     else
         echo 0
     fi
