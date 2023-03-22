@@ -85,7 +85,7 @@ fi
 
 # quit if we've alreadly logged in to WifiCity
 if [ "$(check_loggedin)" == "0" ]; then
-    osascript -e 'display notification "Already logged in!" with title "WifiCity"'
+    # osascript -e 'display notification "Already logged in!" with title "WifiCity"'
     exit 0
 fi
 
@@ -96,9 +96,9 @@ if [ "$(check_loggedin)" != "0" ]; then
     check_loggedin
     osascript -e 'display notification "Failed to log in!" with title "WifiCity"'
     # cf. https://stackoverflow.com/a/23923108
-    osascript -e 'display notification "'"content: ${gen204_resp//\"/}"'" with title "DEBUG 1/3 gen204 response"'
-    osascript -e 'display notification "'"content: ${status_code//\"/}"'" with title "DEBUG 2/3 status code (204 if already logged in)"'
-    osascript -e 'display notification "'"content: ${magic//\"/}"'" with title "DEBUG 3/3 magic"'
+    # osascript -e 'display notification "'"content: ${gen204_resp//\"/}"'" with title "DEBUG 1/3 gen204 response"'
+    # osascript -e 'display notification "'"content: ${status_code//\"/}"'" with title "DEBUG 2/3 status code (204 if already logged in)"'
+    # osascript -e 'display notification "'"content: ${magic//\"/}"'" with title "DEBUG 3/3 magic"'
 else
     osascript -e 'display notification "Logged in!" with title "WifiCity"'
 fi

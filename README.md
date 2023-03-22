@@ -1,22 +1,15 @@
 # WifiCity_captiveportal
 
-Tired to enter your credential every time you connect to WifiCity, these scripts
-are made for you.
-
 The main goal of this repository is to offer a solution to connect automatically
-on internet while the computer is connected at the CIUP wifi called WifiCity.
-
-I made the Windows instruction more user-friendly, if you use linux you are
-supposed to know how to edit a text file or change file mode bits.
-
-I took the Mac scripts from [Mehechiger](https://github.com/Mehechiger/WifiCity_captiveportal) (thanks) to centralize the scripts.
+to WifiCity without manually entering your credentials.
 
 ## How to use
 
 ### Windows
 
-Unfortunately it's not trivial to automate the connection in Windows, so the
-most reliable solution I found is to manually start a script.
+Unfortunately it's not trivial to automate the connection in Windows, since the
+task scheduler runs the script with a considerable delay, so the fastest and
+most reliable solution I found is to manually run the script each time.
 
 * Download
   [WifiCity_win.bat](https://raw.githubusercontent.com/lnwor/WifiCity_captiveportal/main/Windows/WifiCity_win.bat)
@@ -33,7 +26,21 @@ Of course it's not, you can read the code, there's nothing malicious.
 
 #### Automatic
 
-* You can just run `install.sh` and you will be asked for username and password and the script will modify and move the files for you.
+You can just run `install.sh` and you will be asked for username and password,
+the script will then modify and move the files for you.
+
+Follow these steps:
+
+- Open a terminal
+- Clone this repository with `git clone
+  https://github.com/lnwor/WifiCity_captiveportal.git` or download the zip file
+  from
+  [here](https://github.com/lnwor/WifiCity_captiveportal/archive/refs/heads/main.zip)
+  and extract it.
+- Go inside the `Mac` directory and run `./install.sh`. You will be asked for
+  username and password of WifiCity and then for your mac password.
+- You will get asked if you want to reboot now to make the modification
+  effective, otherwise they will be the next time you reboot.
 
 #### Manual
 
