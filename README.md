@@ -60,6 +60,10 @@ launchctl load -w ~/Library/LaunchAgents/me.wificity.login.plist
 Then reboot and it will automatically execute your script when your network
 connection changes.
 
+#### Uninstall
+
+To uninstall the service you can just run `./uninstall.sh`.
+
 ### Linux
 
 * Open the Linux folder and download `login_wifi.sh`
