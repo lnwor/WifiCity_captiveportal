@@ -21,7 +21,7 @@ login_wificity() {
     status=$(sed -n '1s/^[^\s]\+ \([0-9]\+\)\(\s.*\)\?$/\1/p' <<< "$gen204_resp")
 
     # if http status code is not expected
-    if [ "$status" != "204" ]; then
+    if [[ "$status" != "204" ]]; then
         # captive portal is detected
         # assuming wificity network
         # parsing magic code to generate the wificity authentication form
@@ -38,7 +38,7 @@ login_wificity() {
 status=$2
 
 # test if the connection ID is right, and do this only when the interface has been activated
-if test "$CONNECTION_ID" = "WifiCity" && test "$status" = "up"; then
+if { [ "$CONNECTION_ID" == "WifiCity" ] || [ "$CONNECTION_ID" == "FBL_Maison" ]; } && test "$status" = "up"; then
 	login_wificity
 	# Optionally insert here the commands to activate a vpn to hide your traffic from CityWifi
     # Eg. wg-quick up wireguard-interface

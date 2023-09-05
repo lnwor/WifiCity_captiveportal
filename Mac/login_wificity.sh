@@ -43,7 +43,7 @@ check_ssid() {
     # parse ssid
     ssid=$(sed -n 's/^Current Wi-Fi Network: \(.*\)/\1/p' <<< "$(networksetup -getairportnetwork en0)")
 
-    if [ "$ssid" == "WifiCity" ]; then
+    if [ "$ssid" == "WifiCity" ] || [ "$ssid" == "FBL_Maison" ]; then
         echo 0
     fi
 }
