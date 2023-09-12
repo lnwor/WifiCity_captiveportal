@@ -17,7 +17,7 @@ login_wificity() {
     # can be any http address, eg. http://neverssl.com
     # but change the "$status" != "204" with correct status code
     # ref. https://github.com/NickSto/uptest/blob/master/captive-portals.md
-    gen204="http://www.google.com/gen_204"
+    gen204="http://www.apple.com/library/test/success.html"
     
     # grabbing http response to detect captive portal
     gen204_resp=$(curl -si "$gen204")
